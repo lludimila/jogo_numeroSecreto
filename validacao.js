@@ -1,23 +1,23 @@
 function verificaChuteValorValido(chute) {
-    const numero = +chute
     const palavraFim = "game over"
 
     if (chute.toLowerCase() == palavraFim) {
         document.body.innerHTML = `
         <h2>Game Over</h2>
         <button id="reiniciar" class="btn-reiniciar">Reiniciar</button>`
+        return;
     }
 
-    if (chuteForInvalido(numero)) {
+    if (isNaN(chute)) {
         elementoChute.innerHTML += '<div>Valor inválido!</div>'
-
-        return
+        return;
     }
+
+const numero = +chute;
 
     if (numeroForaValorPermitido(numero)) {
         elementoChute.innerHTML += `<div>Valor inválido: Fale um número entre ${menorValor} e ${maiorValor}!</div>`
-
-        return
+        return;
     }
 
     if (numero === numeroSecreto) {
@@ -33,10 +33,6 @@ function verificaChuteValorValido(chute) {
         elementoChute.innerHTML += `<div>o número secreto é maior! <i class="fa-solid fa-arrow-up-long"></i></div>`
     }
 
-}
-
-function chuteForInvalido(numero) {
-    return Number.isNaN(numero)
 }
 
 function numeroForaValorPermitido(numero) {
